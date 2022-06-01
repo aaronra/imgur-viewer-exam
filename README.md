@@ -14,6 +14,20 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+**Note: Imgur is not working on `localhost url`, so we need proxy the url. 
+To do that we need to update `/etc/hosts` for mac os
+
+```
+sudo vim /etc/hosts
+
+```
+- Press `i` to Edit
+- Add `127.0.0.1 imgurexam`
+- Press `esc` and type `:wq` to save the changes
+
+Runs the app in the development mode.
+Open [http://imgurexam:3000](http://imgurexam:3000) to view it in the browser.
+
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
