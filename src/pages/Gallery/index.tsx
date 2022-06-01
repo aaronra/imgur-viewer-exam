@@ -11,6 +11,9 @@ export const Gallery: FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  /**
+   * getSubredditGalleries - function to use to fetch subreddit galleries
+   */
   const getSubredditGalleries = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -25,6 +28,9 @@ export const Gallery: FC = () => {
     setIsLoading(false);
   }, []);
 
+  /**
+   * mapImgGallery - map subreddit galleries data
+   */
   const mapImgGallery = imgList.map((img: SubredditImageType) => {
     return (
       <div className="col" key={img.id}>
@@ -39,9 +45,8 @@ export const Gallery: FC = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : errorMessage ? (
+      {isLoading && <Loader />}
+      {errorMessage ? (
         <MessageBox type="error" message={errorMessage}>
           <div className={styles.refetch__btn} onClick={getSubredditGalleries}>
             Re-fetch

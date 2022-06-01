@@ -6,6 +6,7 @@ interface MessageBoxProps {
   type: "error" | "info" | "success";
   children?: ReactElement | ReactElement[];
 }
+
 export const MessageBox: FC<MessageBoxProps> = ({
   message,
   type,
