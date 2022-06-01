@@ -1,6 +1,8 @@
 import { apiInstance } from "services/apiInstance";
 /**
- * @param  {string} subreddit - subreddit name
+ * Function to fetch subreddit galleries data
+ * @param {string} subreddit - subreddit name
+ * @returns a request promise that will return subreddit galleries response data
  */
 export const getSubredditGalleriesRequest = async (subreddit: string) => {
   const url = `/gallery/r/${subreddit}`;

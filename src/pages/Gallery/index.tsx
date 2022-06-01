@@ -6,14 +6,21 @@ import { Loader } from "components/Loader";
 import { MessageBox } from "components/MessageBox";
 import styles from "./styles.module.scss";
 
+/**
+ * Gallery Page
+ * @date 2022-06-01
+ * @returns {ReactElement}
+ * @component
+ * @example
+ * return(
+ *    <Gallery/>
+ * )
+ */
 export const Gallery: FC = () => {
   const [imgList, setImgList] = useState<SubredditImageType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  /**
-   * getSubredditGalleries - function to use to fetch subreddit galleries
-   */
   const getSubredditGalleries = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -45,6 +52,7 @@ export const Gallery: FC = () => {
 
   return (
     <>
+    <h3>Earthporn</h3>
       {isLoading && <Loader />}
       {errorMessage ? (
         <MessageBox type="error" message={errorMessage}>
