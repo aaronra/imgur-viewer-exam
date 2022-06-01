@@ -1,0 +1,13 @@
+// base
+@import "./base/variables";
+// modules
+@import "./modules/card";
+@import "./modules/containers";
+@import "./modules/grid";
+
+html,
+body {
+  min-height: 100%;
+  background-color: #eff2f5;
+  margin: 0;
+}
