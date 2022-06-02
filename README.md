@@ -28,6 +28,10 @@ sudo vim /etc/hosts
 Runs the app in the development mode.
 Open [http://imgurexam:3000](http://imgurexam:3000) to view it in the browser.
 
+### `yarn dev`
+Runs the app in Desktop build using electron js.
+
+
 ### `yarn docs`
 This will trigger the Auto generated source code documentation using jsDocs.
 A `docs` folder will be created on the root folder of the project.
