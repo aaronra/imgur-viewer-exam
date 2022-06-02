@@ -20,20 +20,26 @@ export const Gallery: FC = () => {
   const [imgList, setImgList] = useState<SubredditImageType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
 
   const getSubredditGalleries = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await getSubredditGalleriesRequest("earthporn");
+      const response = await getSubredditGalleriesRequest(
+        "earthporn",
+        "time",
+        "all",
+        page
+      );
       const data = response?.data;
       if (data) {
-        setImgList(data?.data);
+        setImgList((prevState) => [...prevState, ...data?.data]);
       }
     } catch (error: any) {
       setErrorMessage(error.message);
     }
     setIsLoading(false);
-  }, []);
+  }, [page]);
 
   /**
    * mapImgGallery - map subreddit galleries data
@@ -46,13 +52,25 @@ export const Gallery: FC = () => {
     );
   });
 
+  /**
+   * handleScroll - function that will handle the image list scroll when it reached the bottom
+   */
+  const handleScroll = (e: any) => {
+    const bottom =
+      e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    if (bottom) {
+      setPage((prevState) => prevState + 1);
+    }
+  };
+
   useEffect(() => {
+
     getSubredditGalleries();
   }, [getSubredditGalleries]);
 
   return (
     <>
-    <h3>Earthporn</h3>
+      <h3>Earthporn</h3>
       {isLoading && <Loader />}
       {errorMessage ? (
         <MessageBox type="error" message={errorMessage}>
@@ -61,7 +79,13 @@ export const Gallery: FC = () => {
           </div>
         </MessageBox>
       ) : (
-        <div className="row">{mapImgGallery}</div>
+        <div
+          className={`${styles.thumbnail__wrapper} row`}
+          onScroll={handleScroll}
+          style={{ overflowY: "scroll" }}
+        >
+          {mapImgGallery}
+        </div>
       )}
     </>
   );

@@ -1,4 +1,9 @@
-.refetch__btn{
+.refetch__btn {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.thumbnail__wrapper {
+  overflow-y: "scroll";
+  height: inherit;
 }
